@@ -4,12 +4,11 @@ import { ActivityIndicator, FlatList, Text, View } from "react-native";
 const HomeScreen = () => {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
-
   const getMovies = async () => {
     try {
-      const response = await fetch("https://reactnative.dev/movies.json");
+      const response = await fetch("https://c25a-103-156-19-229.in.ngrok.io/api/v1/doctor/getAllDoctors");
       const json = await response.json();
-      setData(json.movies);
+      setData(json);
     } catch (error) {
       console.error(error);
     } finally {
@@ -31,7 +30,7 @@ const HomeScreen = () => {
           keyExtractor={({ id }) => id}
           renderItem={({ item }) => (
             <Text>
-              {item.title}, {item.releaseYear}
+              {item.fname}, {item.lname}
             </Text>
           )}
         />
